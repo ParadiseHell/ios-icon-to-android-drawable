@@ -28,27 +28,37 @@ moveFile(){
 	#get the source image path
 	source_image_name=${1##*/}
 	#get the dest image name
-	dest_image_name=${source_image_name// /_}
-	dest_image_name=${dest_image_name//@2x/}
+	dest_image_name=${source_image_name//@2x/}
 	dest_image_name=${dest_image_name//@3x/}
-	dest_image_name=$(echo $dest_image_name | tr '[A-Z]' '[a-z]')
+	expect_image_name=""
+	for (( i=0; i<${#dest_image_name}; i++ ))
+	do
+		c=${dest_image_name:$i:1}
+		if [[ "$c" =~ [A-Z] ]]
+		then
+			c=$(echo $c | tr '[A-Z]' '[a-z]')
+			c="_"$c
+		fi
+		expect_image_name=$expect_image_name$c
+	done
+	#remove and rename
 	if [ $2 == 1 ]
 	then
 		#move image to speccail android drawable folder	
 		mv -f -- "$1" "$drawable_hdpi"
 		#rename file
-		mv -- "$drawable_hdpi/$source_image_name" "$drawable_hdpi/$dest_image_name"
+		mv -f -- "$drawable_hdpi/$source_image_name" "$drawable_hdpi/$expect_image_name"
 	elif [ $2 == 2 ]
 	then
 		#move image to speccail android drawable folder
 		mv -f -- "$1" "$drawable_xhdpi"
 		#rename file
-		mv -- "$drawable_xhdpi/$source_image_name" "$drawable_xhdpi/$dest_image_name"
+		mv -f -- "$drawable_xhdpi/$source_image_name" "$drawable_xhdpi/$expect_image_name"
 	else
 		#move image to speccail android drawable folder
 		mv -f -- "$1" "$drawable_xxhdpi"
 		#rename file
-		mv -- "$drawable_xxhdpi/$source_image_name" "$drawable_xxhdpi/$dest_image_name"
+		mv -f -- "$drawable_xxhdpi/$source_image_name" "$drawable_xxhdpi/$expect_image_name"
 	fi
 }
 
