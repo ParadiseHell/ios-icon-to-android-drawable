@@ -2,6 +2,15 @@
 
 a script try to make the ios icons into special android drawable folder.
 
+## ios icon naming rule
+
+- **Camel-Case** ( cameraPick.png )
+- **Special icon suffix**
+
+		cameraPick.png   	==> 	drawable-hdpi
+		cameraPick@2.png 	==> 	drawable-xhdpi
+		cameraPick@3.png 	==> 	drawable-xxhdpi
+
 ## How to use
 
 1. `git clone https://github.com/ParadiseHell/ios-icon-to-android-drawable.git`
