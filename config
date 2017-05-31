@@ -1,3 +1,6 @@
 android_drawable_directory="directory/to/contain/all/android/drawable/directory"
 ios_icon_directory="directory/to/contain/all/iso/icons"
 image_suffix=(".png" ".jpg")
+xhdpi="@2"
+xxhdpi="@3"
+xxxhdpi="@4"
