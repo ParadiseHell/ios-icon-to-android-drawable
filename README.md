@@ -29,6 +29,9 @@ find the difference between all icons.**
 - **android_drawable_directory:** the path that contain all android drawable folder(the path is **not required to be existed**)
 - **iso_icon_directory:** the path that contain all ios incons(the path is **required to be existed**)
 - **image_suffix:** an array that contain all image suffix that you want(**be carefal to add .**)
+- **xhdpi:** the special suffix of the drawable-xhdpi icons
+- **xxhdpi:** the special suffix of the drawable-xxhdpi icons
+- **xxxhdpi:** the special suffix of the drawable-xxxhdpi icons
 
 #### Sample of the config file
 ```sh
