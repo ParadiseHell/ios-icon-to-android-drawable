@@ -7,13 +7,13 @@ a script try to make the ios icons into special android drawable folder.
 - **Camel-Case** ( cameraPick.png )
 - **Special icon suffix** (the following is just sample)
 
-		cameraPick.png    ====>  drawable-hdpi
-		cameraPick@2.png  ====>  drawable-xhdpi
-		cameraPick@3.png  ====>  drawable-xxhdpi
-		cameraPick@4.png  ====>  drawable-xxxhdpi
+		cameraPick.png     ====>  camera_pick.png  ====>  drawable-hdpi
+		cameraPick@2x.png  ====>  camera_pick.png  ====>  drawable-xhdpi
+		cameraPick@3x.png  ====>  camera_pick.png  ====>  drawable-xxhdpi
+		cameraPick@4x.png  ====>  camera_pick.png  ====>  drawable-xxxhdpi
 	
-In this README file I use **@{number} as special icon** suffix to define different ios icons,of course
-you can use the way you like. Such as **${number}** , **#{number}** and so on,but **make sure you can
+In this README file I use **@{number}x as special icon** suffix to define different ios icons,of course
+you can use the way you like. Such as **${number}x** , **#{number}x** and so on,but **make sure you can
 find the difference between all icons.**
 
 ## How to use
@@ -38,9 +38,9 @@ find the difference between all icons.**
   android_drawable_directory="/home/chengtao/drawable"
   ios_icon_directory="/home/chengtao/iso/icons"
   image_suffix=(".png" ".jpg")
-  xhdpi="@2"#you can use your own naming rule
-  xxhdpi="@3"#you can use your own naming rule
-  xxxhdpi="@4"#you can use your own naming rule
+  xhdpi="@2x"#you can use your own naming rule
+  xxhdpi="@3x"#you can use your own naming rule
+  xxxhdpi="@4x"#you can use your own naming rule
 ```
 
 ## License
