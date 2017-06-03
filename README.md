@@ -5,10 +5,14 @@ a script try to make the ios icons into special android drawable folder.
 ## ios icon naming rule
 
 - **4 kinds of mining rules**
-	- **lower camel case**(cameraPick.png)**[1]**
-	- **upper camel case**(CameraPick.png)**[2]**
-	- **upper camel case with space**(Camera Pick.png)**[3]**
-	- **lower case with dashes**(camera-pick.png)**[4]**
+	- **lower camel case**(cameraPick.png) 
+		- **parameter:** 1 
+	- **upper camel case**(CameraPick.png)
+		- **parameter:** 2
+	- **upper camel case with space**(Camera Pick.png)
+		- **parameter:** 3
+	- **lower case with dashes**(camera-pick.png)
+		- **parameter:** 4
 
 - **Special icon suffix** (the following is just sample)
 
@@ -43,7 +47,7 @@ find the difference between all icons.**
   android_drawable_directory="/home/chengtao/drawable"
   ios_icon_directory="/home/chengtao/iso/icons"
   image_suffix=(".png" ".jpg")
-  naming_rule=1 #set the naming the ui use
+  naming_rule=1 #set the naming rule ios icons using,please use number 1,2,3 or 4
   xhdpi="@2x"#you can use your own naming rule
   xxhdpi="@3x"#you can use your own naming rule
   xxxhdpi="@4x"#you can use your own naming rule
