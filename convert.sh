@@ -20,6 +20,12 @@ has_x=0
 has_xx=0
 has_xxx=0
 
+#ios ico naming rule,default 1 (lower camel came)
+current_naming_rule=1
+
+#expect image name that android drawable need
+expect_image_name=""
+
 createAndroidDrawableFolder(){
 	mkdir -p $drawable_hdpi
 	if [[ $has_x == 1 ]]
@@ -36,24 +42,42 @@ createAndroidDrawableFolder(){
 	fi
 }
 
+getExpectImageName(){
+	#remove all unnecessary string
+	dest_image_name=$1
+	dest_image_name=${dest_image_name//$xhdpi/}
+	dest_image_name=${dest_image_name//$xxhdpi/}
+	dest_image_name=${dest_image_name//$xxxhdpi/}
+	dest_image_name=${dest_image_name// /}
+	#get the expect image name
+	expect_image_name=""
+	if [[ $current_naming_rule == 1 || $current_naming_rule == 2 || $current_naming_rule == 3 ]]	
+	then	
+		for (( i=0; i<${#dest_image_name}; i++ ))
+		do
+			c=${dest_image_name:$i:1}
+			if [[ "$c" =~ [A-Z] ]]
+			then
+					c=$(echo $c | tr '[A-Z]' '[a-z]')
+					c="_"$c
+			fi
+			expect_image_name=$expect_image_name$c
+		done
+	else
+		expect_image_name=${dest_image_name//-/_}
+	fi
+	if [[ $current_naming_rule == 2 || $current_naming_rule == 3 ]]
+	then
+		expect_image_name=${expect_image_name#*_}
+	fi	
+}
+
+
 moveFile(){
 	#get the source image path
 	source_image_name=${1##*/}
-	#get the dest image name
-	dest_image_name=${source_image_name//$xhdpi/}
-	dest_image_name=${dest_image_name//$xxhdpi/}
-	dest_image_name=${dest_image_name//$xxxhdpi/}
-	expect_image_name=""
-	for (( i=0; i<${#dest_image_name}; i++ ))
-	do
-		c=${dest_image_name:$i:1}
-		if [[ "$c" =~ [A-Z] ]]
-		then
-			c=$(echo $c | tr '[A-Z]' '[a-z]')
-			c="_"$c
-		fi
-		expect_image_name=$expect_image_name$c
-	done
+	#get expect image name
+	getExpectImageName "$source_image_name"
 	#remove and rename
 	if [ $2 == 1 ]
 	then
@@ -140,6 +164,7 @@ initConfig(){
 	drawable_xxhdpi=$android_drawable_directory/$drawable_xxhdpi
 	drawable_xxxhdpi=$android_drawable_directory/$drawable_xxxhdpi
 	image_suffix_num=${#image_suffix[@]}
+	
 	#xhdpi
 	if [[ ! "$xhdpi" == "" ]]
 	then
@@ -154,6 +179,12 @@ initConfig(){
 	if [[ ! "$xxxhdpi" == "" ]]
 	then
 		has_xxx=1
+	fi
+
+	#naming rule
+	if [[ ! $naming_rule == "" && $naming_rule > 0 && $naming_rule < 5 ]]
+	then
+		current_naming_rule=$naming_rule
 	fi
 }
 
